@@ -1,7 +1,20 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import "./styles.css";
 
+import Products from "./components/Products";
+
 class App extends Component {
+  state = {
+    products: []
+  };
+
+  componentDidMount() {
+    Axios.get("https://jsonplaceholder.typicode.com/users").then(res => {
+      this.setState({ products: res.data });
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,6 +25,7 @@ class App extends Component {
               <div className="col-md-8">
                 <h1>Items List</h1>
                 <hr />
+                <Products products={this.state.products} />
               </div>
               <div className="cold-md-4">
                 <h1>shopping cart</h1>
