@@ -3,10 +3,12 @@ import Axios from "axios";
 import "./styles.css";
 
 import Products from "./components/Products";
+import CartItems from "./components/CartItems";
 
 class App extends Component {
   state = {
-    products: []
+    products: [],
+    cartItems: []
   };
 
   componentDidMount() {
@@ -14,6 +16,10 @@ class App extends Component {
       this.setState({ products: res.data });
     });
   }
+
+  handleAddToCart = (e, items) => {
+    this.setState({ cartItems: items });
+  };
 
   render() {
     return (
@@ -23,13 +29,17 @@ class App extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8">
-                <h1>Items List</h1>
+                <h1>Items List </h1>
                 <hr />
-                <Products products={this.state.products} />
+                <Products
+                  products={this.state.products}
+                  clicked={this.handleAddToCart}
+                />
               </div>
               <div className="cold-md-4">
                 <h1>shopping cart</h1>
                 <hr />
+                <CartItems items={this.state.cartItems.name} />
               </div>
             </div>
           </div>

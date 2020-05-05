@@ -8,7 +8,12 @@ const products = props => {
         <article className="ArticleStyle  col-md-6">
           <div>{items.name}</div>
         </article>
-        <button className="col-md-4 first">Add to Cart</button>
+        <button
+          className="col-md-4 first"
+          onClick={e => props.clicked(e, items)}
+        >
+          Add to Cart
+        </button>
       </div>
     );
   });
