@@ -18,7 +18,10 @@ class App extends Component {
   }
 
   handleAddToCart = (e, items) => {
-    this.setState({ cartItems: items });
+    let dupItems = [...this.state.cartItems];
+    dupItems.push(items);
+    this.setState({ cartItems: dupItems });
+    //  console.log("its=", this.state.cartItems);
   };
 
   render() {
@@ -39,7 +42,7 @@ class App extends Component {
               <div className="cold-md-4">
                 <h1>shopping cart</h1>
                 <hr />
-                <CartItems items={this.state.cartItems.name} />
+                <CartItems items={this.state.cartItems} />
               </div>
             </div>
           </div>
